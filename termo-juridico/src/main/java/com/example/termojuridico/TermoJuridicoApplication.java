@@ -3,6 +3,7 @@ package com.example.termojuridico;
 import com.example.termojuridico.itext7.MainItext7;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,12 +12,11 @@ import java.io.IOException;
 public class TermoJuridicoApplication {
 
 	public static void main(String[] args) throws IOException{
-		SpringApplication.run(TermoJuridicoApplication.class, args);
-//		CreatePdfDocument document = new CreatePdfDocument();
-//		document.main();
+		ConfigurableApplicationContext context = SpringApplication.run(TermoJuridicoApplication.class, args);
 
-		MainItext7 mainclass = new MainItext7();
+		MainItext7.main();
 
+		context.close();
 
 	}
 
