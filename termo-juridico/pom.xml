@@ -55,6 +55,13 @@
 			<version>2.1.6</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.docusign/docusign-esign-java -->
+		<dependency>
+			<groupId>com.docusign</groupId>
+			<artifactId>docusign-esign-java</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
