@@ -1,23 +1,197 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="teste.css">
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <style>
+    body {
+      padding: 20px;
+      font-family: Calibri;
+      font-size: 0.875em;
+    }
+
+    .pd-5 {
+      padding: 5px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .table-header {
+      width: 100%;
+      padding-bottom: 15px;
+      color: gray;
+    }
+
+    .table-clausula-v {
+      width: 100%;
+      padding-bottom: 5px;
+    }
+
+    .table-header td {
+      width: 50%;
+    }
+
+    .spaces {
+      padding: 3px;
+    }
+
+    .header-image .logo {
+      width: 130px;
+      height: 60px;
+      opacity: 0.5;
+    }
+
+    .clause {
+      padding: 5px 0;
+    }
+
+    .clause .clause-title {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .clause .clause-content {
+      border: 1px solid #000;
+      padding: 5px;
+    }
+
+    .clause-content p {
+      margin: 5px;
+    }
+
+    .clause-content .letters-items {
+      padding: 2px 20px;
+    }
+
+
+    .clause .clause-content-table {
+      border: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .clause-content-table p {
+      margin: 5px;
+    }
+
+    .clause-content-table .table-row {
+      border-bottom: 1px solid #000;
+    }
+
+    .clause-content-table .table-row:nth-last-child() {
+      border-bottom: none;
+    }
+
+    .table-row .value-vehicle {
+      width: 16%;
+    }
+
+    .table-row .table-vehicle {
+      width: 100%;
+    }
+
+    .table-vehicle td {
+      width: 33%;
+    }
+
+    .clause .clause-content-no-pd {
+      border: 1px solid #000;
+    }
+
+    .clause-content-no-pd p {
+      margin: 5px;
+    }
+
+    .clause-content-no-pd .table-border {
+      border-right: 1px solid #000;
+    }
+
+    .paragraph-negative {
+      margin-top: -15px;;
+    }
+
+    .paragraph-title {
+      padding-bottom: 4px;
+    }
+
+    .paragraph .paragraph-title {
+      text-decoration: underline;
+    }
+
+    .paragraph .paragraph-item {
+      width: 45px;
+      display: inline-block;
+    }
+
+    .table-details {
+      padding-bottom: 8px;
+    }
+
+    .table-details .details-title {
+      font-weight: bold;
+    }
+
+    .table-details .descriptions {
+      line-height: 8px;
+    }
+
+    .footer-table {
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .footer-table td {
+      width: 50%;
+    }
+
+    .footer-table .footer-title {
+      text-decoration: underline;
+    }
+
+    .footer-table .assignature {
+      line-height: 1px;
+      padding-top: 40px;
+    }
+
+    .assignature .line {
+      border: 1px solid #000;
+      width: 85%;
+    }
+
+    .footer-description {
+      padding: 18px 0px;
+      text-align: center;
+      line-height: 10px;
+    }
+
+	.sign-page {
+		padding-top: 40px;
+	}
+  </style>
 </head>
 
 <body>
   <div style="page-break-after: always;">
     <table>
-      <thead class="table-header" align="top">
+      <thead class="table-header">
         <tr>
           <td>
             <div class="header-image">
-              <img class="logo" src="C:\Users\re039550\Downloads\arquivosTermo\positivo.png">
+              <img class="logo" src="positivo.png">
             </div>
           </td>
           <td>
             <div class="header-description">
               <p>Instrumento Particular de Constituição de Alienação Fiduciária
-                em Garantia de Bens Móveis (Floor Plan) nº [nº Instrumento Alienação]</p>
+                em Garantia de Bens Móveis <b>(Floor Plan)</b> nº <b>$termo.dadosLojista.instrumentoAlienacao</b></p>
             </div>
           </td>
         </tr>
@@ -45,9 +219,13 @@
             <div class="clause">
               <p class="clause-title">II – FIDUCIANTE e FIEL DEPOSITÁRIO DOS BENS</p>
               <div class="clause-content">
-                <p><b><label>Nome/Razão Social:</label></b> [Razão Social]</p>
-                <p><b><label>Endereço:</label></b> [Endereço completo]</p>
-                <p><b><label>CNPJ:</label></b> [CNPJ do cliente]</p>
+                <p><b><label>Nome/Razão Social:</label></b> $termo.dadosLojista.razaoSocial</p>
+                <p><b><label>Endereço:</label></b> $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.logradouro,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.numero,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.bairro,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.cidade,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.uf.</p>
+                <p><b><label>CNPJ:</label></b> $termo.dadosLojista.cnpj</p>
                 <p>doravante denominado simplesmente <b>“FIDUCIANTE”;</b></p>
               </div>
             </div>
@@ -56,18 +234,18 @@
         <tr>
           <td colspan="2">
             <div class="clause">
-              <p class="clause-title">III - CARACTERÍSTICAS DA OPERAÇÃO (doravante denominada simplesmente Operação
-                Garantida)</p>
+              <p><b>III - CARACTERÍSTICAS DA OPERAÇÃO</b> (doravante denominada simplesmente <b>Operação
+                Garantida</b>)</p>
               <div class="clause-content">
-                <p><b><label>Origem:</label></b> Cédula de Crédito Bancário (“CCB”) nº [número da CCB]</p>
-                <p><b><label>Limite de Crédito:</label></b> R$ [Limite de Crédito da CCB]</p>
-                <p><b><label>Data de Emissão da CCB:</label></b>[Data Emissão CCB]</p>
+                <p><b><label>Origem:</label></b> Cédula de Crédito Bancário (“CCB”) nº $termo.dadosLojista.numeroCCB</p>
+                <p><b><label>Limite de Crédito:</label></b> R$ $termo.dadosLojista.limiteTotalFormatado</p>
+                <p><b><label>Data de Emissão da CCB:</label></b> $termo.dataEmissaoCCBFormatada</p>
                 <p><b><label>Encargos:</label></b></p>
                 <div>
                   <p><b><label>(i) Remuneratórios:</label></b></p>
                   <div class="letters-items">
-                    <p>a. Juros pré-fixados equivalentes a [taxa]% a.m ([por extenso] por cento exponencial ao mês),
-                      equivalente a [taxa]% a.a. ([por extenso] por cento exponencial ao ano). Base 360 (trezentos
+                    <p>a. Juros pré-fixados equivalentes a $termo.dadosLojista.dadosTaxaLojista.valorTaxaMes% a.m ($termo.dadosLojista.dadosTaxaLojista.valorTaxaMesExtenso por cento exponencial ao mês),
+                      equivalente a $termo.dadosLojista.dadosTaxaLojista.valorTaxaAno% a.a. ($termo.dadosLojista.dadosTaxaLojista.valorTaxaAnoExtenso por cento exponencial ao ano). Base 360 (trezentos
                       e sessenta) dias corridos.</p>
                     <p>b. Incidência sobre o saldo devedor diário, sendo exigível no segundo dia útil do mês
                       subsequente à ocorrência de saldo devedor.</p>
@@ -77,7 +255,7 @@
                     <p>a. Juros Moratórios: 1% (um por cento) linear ao mês.</p>
                     <p>b. Multa Moratória Não Compensatória: 10% sobre o saldo devedor vencido e não pago</p>
                   </div>
-                  <p><b><label>Local de Pagamento: [Cidade / UF de Emissão da CCB]</label></b></p>
+                  <p><label><b>Local de Pagamento:</b> $termo.cidadeUfEmissao</label></p>
                 </div>
               </div>
             </div>
@@ -95,191 +273,47 @@
                     descritos e
                     caracterizados a seguir:</p>
                 </div>
+                #set($numeroVeiculo = 1)
+                #foreach($garantia in $termo.dadosGarantias)
                 <div class="table-row">
                   <table class="table-vehicle">
                     <tr>
                       <td>
-                        <p><b><label>(1) Marca:</label></b> [Marca]</p>
+                        <p><label>($numeroVeiculo) Marca:</label> <b>$garantia.marca</b></p>
                       </td>
                       <td class="text-center">
-                        <p><b><label>Modelo:</label></b> [Modelo e Versão]</p>
+                        <p><label>Modelo:</label> <b>$garantia.modelo e $garantia.versao</b></p>
                       </td>
                       <td class="text-right">
-                        <p><b><label>Ano Mod.:</label></b> [Ano Modelo]</p>
+                        <p><label>Ano Mod.:</label> <b>$garantia.anoModelo</b></p>
                       </td>
                     </tr>
                     <tr>
                       <td>
-                        <p><b><label>Chassi:</label></b> [Nº Chassi]</p>
+                        <p><label>Chassi:</label> <b>$garantia.chassi</b></p>
                       </td>
                       <td class="text-center">
-                        <p><b><label>Valor Limite Desbloqueado:</label></b></p>
+                        <p><label>Valor Limite Desbloqueado:</label></p>
                       </td>
                       <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor Limite Liberado]</p>
+                        <p><label>R$</label> <b>$garantia.valorLiberadoFormatado</b></p>
                       </td>
                     </tr>
                     <tr>
                       <td>
-                        <p><b><label>Data Validade:</label></b> [DtAlien+Prazo]</p>
+                        <p><label>Data Validade: <b>$garantia.vencimentoFormatado</b></label></p>
                       </td>
                       <td class="text-center">
-                        <p><b><label>Valor do Veículo:</label></b></p>
+                        <p><label>Valor do Veículo:</label></p>
                       </td>
                       <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor do Bem]</p>
+                        <p><label>R$</label> <b>$garantia.valorRevendaFormatado</b></p>
                       </td>
                     </tr>
                   </table>
                 </div>
-                <div class="table-row">
-                  <table class="table-vehicle">
-                    <tr>
-                      <td>
-                        <p><b><label>(2) Marca:</label></b> [Marca]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Modelo:</label></b> [Modelo e Versão]</p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>Ano Mod.:</label></b> [Ano Modelo]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Chassi:</label></b> [Nº Chassi]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor Limite Desbloqueado:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor Limite Liberado]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Data Validade:</label></b> [DtAlien+Prazo]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor do Veículo:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor do Bem]</p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="table-row">
-                  <table class="table-vehicle">
-                    <tr>
-                      <td>
-                        <p><b><label>(3) Marca:</label></b> [Marca]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Modelo:</label></b> [Modelo e Versão]</p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>Ano Mod.:</label></b> [Ano Modelo]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Chassi:</label></b> [Nº Chassi]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor Limite Desbloqueado:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor Limite Liberado]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Data Validade:</label></b> [DtAlien+Prazo]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor do Veículo:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor do Bem]</p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="table-row">
-                  <table class="table-vehicle">
-                    <tr>
-                      <td>
-                        <p><b><label>(4) Marca:</label></b> [Marca]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Modelo:</label></b> [Modelo e Versão]</p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>Ano Mod.:</label></b> [Ano Modelo]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Chassi:</label></b> [Nº Chassi]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor Limite Desbloqueado:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor Limite Liberado]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Data Validade:</label></b> [DtAlien+Prazo]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor do Veículo:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor do Bem]</p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="table-row">
-                  <table class="table-vehicle">
-                    <tr>
-                      <td>
-                        <p><b><label>(5) Marca:</label></b> [Marca]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Modelo:</label></b> [Modelo e Versão]</p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>Ano Mod.:</label></b> [Ano Modelo]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Chassi:</label></b> [Nº Chassi]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor Limite Desbloqueado:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor Limite Liberado]</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p><b><label>Data Validade:</label></b> [DtAlien+Prazo]</p>
-                      </td>
-                      <td class="text-center">
-                        <p><b><label>Valor do Veículo:</label></b></p>
-                      </td>
-                      <td class="text-right">
-                        <p><b><label>R$</label></b> [Valor do Bem]</p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+                #set($numeroVeiculo = $numeroVeiculo + 1)
+                #end
               </div>
             </div>
           </td>
@@ -289,19 +323,20 @@
             <div class="clause">
               <p class="clause-title">V - VALOR TOTAL DO LIMITE DESBLOQUEADO E DE VEÍCULOS CONSTITUÍDOS EM GARANTIA</p>
               <div class="clause-content-no-pd">
-                <table class="table-header">
+                <table class="table-clausula-v">
                   <tr>
                     <td class="table-border">
                       <div>
-                        <p><b><label>Valor Total de Limite Desbloqueado (proporcional à totalidade das Garantias
+                        <p><b><label>Valor Total de Limite Desbloqueado (proporcional à
+                        </br> totalidade das Garantias
                               constituídas):</label></b></p>
                         <p><b><label>Valor Total dos Veículos constituídos em Garantia:</label></b></p>
                       </div>
                     </td>
                     <td>
                       <div>
-                        <p class="text-right"><b><label>R$</label></b> [Valor Total Limite Desbloqueado]</p>
-                        <p class="text-right"><b><label>R$</label></b> [Valor Total Bens em Garantia]</p>
+                        <p class="text-right"><b><label>R$</label></b> $termo.totalLiberadoFormatado</p>
+                        <p class="text-right"><b><label>R$</label></b> $termo.totalEsperadoFormatado</p>
                       </div>
                     </td>
                   </tr>
@@ -330,9 +365,7 @@
         <tr>
           <td colspan="2">
             <section class="paragraph">
-             <!-- <br>
-              <br> -->
-              <h2 class="paragraph-title">DA GARANTIA</h2>
+              <p class="paragraph-title"><b>DA GARANTIA</b></p>
               <p>
                 <span class="paragraph-item">1.</span>
                 Na forma do disposto neste Contrato e nos termos do artigo 66-B,
@@ -350,8 +383,8 @@
                 desembolsada por conta da constituição, do aperfeiçoamento e do exercício de direitos e prerrogativas
                 decorrentes da <b>Operação Garantida</b> e da execução de garantias prestadas e quaisquer outros
                 acréscimos
-                devidos ao PAN, as quais, para os fins do artigo 66-B, da Lei nº 4.728/65, e do artigo 1.362 do Código
-                Civil, estão descritas no Quadro III do preâmbulo, o FIDUCIANTE, neste ato, em caráter irrevogável e
+                devidos ao <b>PAN</b>, as quais, para os fins do artigo 66-B, da Lei nº 4.728/65, e do artigo 1.362 do Código
+                Civil, estão descritas no Quadro III do preâmbulo, o <b>FIDUCIANTE</b>, neste ato, em caráter irrevogável e
                 irretratável, aliena fiduciariamente em garantia ao <b>PAN</b> os <b>Bens</b> descritos no Quadro IV do
                 preâmbulo.
               </p>
@@ -410,7 +443,7 @@
               </p>
             </section>
             <section class="paragraph">
-              <h2 class="paragraph-title">DAS OBRIGAÇÕES DO FIDUCIANTE</h2>
+              <p class="paragraph-title"><b>DAS OBRIGAÇÕES DO FIDUCIANTE</b></p>
               <p>
                 <span class="paragraph-item">2.</span>
                 Constituem-se obrigações do <b>FIDUCIANTE:</b>
@@ -444,13 +477,8 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
           <td colspan="2">
-            <section class="paragraph">
+            <section class="paragraph paragraph-negative">
               <p>
                 <span class="paragraph-item">2.1.2.</span>
                 Todos os novos bens que o <b>FIDUCIANTE</b>, em virtude de reforço ou de substituição, venha a entregar
@@ -473,7 +501,7 @@
                 sendo
                 condição para tanto: (i) a manutenção, pelo <b>FIDUCIANTE</b>, do <b>Valor Total da Garantia</b>
                 estabelecido no
-                Quadro V do preâmbulo mediante oferecimento de novos <b>bens</b> em garantia, ou o <b>Valor Mínimo de
+                Quadro V do preâmbulo mediante oferecimento de novos bens em garantia, ou o <b>Valor Mínimo de
                   Garantia</b>,
                 conforme o caso; ou (ii) a amortização, pelo <b>FIDUCIANTE</b>, do valor proporcional do <b>Bem</b> a
                 ser liberado
@@ -482,11 +510,10 @@
               <p>
                 <span class="paragraph-item">2.3.</span>
                 Notificar o <b>PAN</b> na mesma data em que verificar a ocorrência de qualquer dos seguintes eventos:
-                (i)
-                qualquer acontecimento que possa depreciar ou ameaçar a <b>Garantia</b> ora prestada; e (ii) a
+                (i) qualquer acontecimento que possa depreciar ou ameaçar a <b>Garantia</b> ora prestada; e (ii) a
                 ocorrência de
                 qualquer penhora, arresto ou qualquer medida judicial ou administrativa de efeito similar que recaia
-                sobre qualquer dos <b>Bens</b>.
+                sobre qualquer dos <br><b>Bens</b>.
               </p>
               <p>
                 <span class="paragraph-item">2.4.</span>
@@ -567,7 +594,7 @@
               </p>
             </section>
             <section class="paragraph">
-              <h2 class="paragraph-title">DECLARAÇÕES E GARANTIAS</h2>
+              <p class="paragraph-title"><b>DECLARAÇÕES E GARANTIAS</b></p>
               <p>
                 <span class="paragraph-item">3.</span>
                 O <b>FIDUCIANTE</b> declara para os efeitos da presente Garantia que:
@@ -576,33 +603,28 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
           <td colspan="2">
-            <section class="paragraph">
+            <section class="paragraph paragraph-negative">
               <p>
-                (a) os <b>Bens</b> são de sua propriedade e estão livres e desembaraçados de quaisquer ônus ou gravames
+                <span class="paragraph-item">(a)</span> os <b>Bens</b> são de sua propriedade e estão livres e desembaraçados de quaisquer ônus ou gravames
                 reais,
                 pessoais ou judiciais, de qualquer natureza;
               </p>
               <p>
-                (b) está em situação regular perante toda a legislação trabalhista, tributária e ambiental;
+                <span class="paragraph-item">(b)</span> está em situação regular perante toda a legislação trabalhista, tributária e ambiental;
               </p>
               <p>
-                (c) é uma sociedade devidamente constituída e validamente existente e possui plenos poderes, capacidade
+                <span class="paragraph-item">(c)</span> é uma sociedade devidamente constituída e validamente existente e possui plenos poderes, capacidade
                 e autoridade para conduzir os seus negócios e contratar a presente <b>Garantia</b>, assim como assumir,
                 cumprir
                 e observar as obrigações nela contidas;
               </p>
               <p>
-                (d) tomou todas as medidas e obteve todas as autorizações necessárias para autorizar a constituição da
+                <span class="paragraph-item">(d)</span> tomou todas as medidas e obteve todas as autorizações necessárias para autorizar a constituição da
                 presente <b>Garantia</b>;
               </p>
               <p>
-                (e) a celebração da presente <b>Garantia</b> e o cumprimento das obrigações nela previstas não violam
+                <span class="paragraph-item">(e)</span> a celebração da presente <b>Garantia</b> e o cumprimento das obrigações nela previstas não violam
                 nem
                 violarão: (i) os documentos societários do <b>FIDUCIANTE</b>; (ii) qualquer acordo, instrumento ou
                 contrato de
@@ -613,7 +635,7 @@
                 contrato, instrumento, acordo, empréstimo ou documento de que o <b>FIDUCIANTE</b> seja parte;
               </p>
               <p>
-                (f) os representantes legais que assinam a presente <b>Garantia</b> têm poderes estatutários e/ou
+                <span class="paragraph-item">(f)</span> os representantes legais que assinam a presente <b>Garantia</b> têm poderes estatutários e/ou
                 delegados
                 para assumir as obrigações ora estabelecidas e, sendo mandatários, tiveram os poderes legitimamente
                 outorgados, estando os respectivos mandatos em pleno vigor e efeito.
@@ -622,14 +644,9 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
           <td colspan="2">
             <section class="paragraph">
-              <h2 class="paragraph-title">DO REGISTRO DA GARANTIA</h2>
+              <p class="paragraph-title"><b>DO REGISTRO DA GARANTIA</b></p>
               <p>
                 <span class="paragraph-item">4.</span>
                 Para a devida formalização e aperfeiçoamento da alienação fiduciária ora contratada, o <b>FIDUCIANTE</b>
@@ -650,14 +667,9 @@
           </td c>
         </tr>
         <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
           <td colspan="2">
             <section class="paragraph">
-              <h2 class="paragraph-title">DA SUBSTITUIÇÃO DOS BENS</h2>
+              <p class="paragraph-title"><b>SUBSTITUIÇÃO DOS BENS</b></p>
               <p>
                 <span class="paragraph-item">5.</span>
                 O <b>FIDUCIANTE</b>, sem prejuízo do cumprimento do disposto no item 1.4 acima, poderá: (i) proceder à
@@ -683,7 +695,7 @@
               <p>
                 <span class="paragraph-item">5.2.</span>
                 Os novos bens que eventualmente venham a ser oferecidos pelo <b>FIDUCIANTE</b> considerar-se-ão aceitos
-                pelo <b>PAN</b> e automaticamente integrados à presente Garantia mediante a assinatura do <b>PAN</b> no
+                pelo <b>PAN</b> e automaticamente integrados à presente <b>Garantia</b> mediante a assinatura do <b>PAN</b> no
                 <b>Novo
                   Instrumento de Alienação Fiduciária</b> em substituição ao presente.
               </p>
@@ -705,7 +717,7 @@
               <p>
                 <span class="paragraph-item">5.4.</span>
                 Caso o <b>PAN</b> aceite a exclusão de qualquer <b>Bem</b> e, consequentemente, a inclusão de novos
-                Bens, este
+                <b>Bens</b>, este
                 adotará todas as medidas cabíveis para liberação dos <b>Bens</b> junto ao Sistema Nacional de Gravames,
                 bem
                 assim envidará melhores esforços para que tal liberação ocorra em até 10 (dez) dias corridos a contar da
@@ -716,14 +728,9 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
           <td colspan="2">
             <section class="paragraph">
-              <h2 class="paragraph-title">DO VENCIMENTO ANTECIPADO</h2>
+              <p class="paragraph-title"><b>DO VENCIMENTO ANTECIPADO</b></p>
               <p>
                 <span class="paragraph-item">6.</span>
                 Adicionalmente às hipóteses de vencimento antecipado previstas neste instrumento ou em lei, o saldo
@@ -736,30 +743,30 @@
         </tr>
         <tr>
           <td colspan="2">
-            <section class="paragraph">
+            <section class="paragraph paragraph-negative">
               <p>
-                (a) Perda/diminuição da integralidade do <b>Valor Total da Garantia</b> ou <b>Valor Mínimo da
+                <span class="paragraph-item">(a)</span> Perda/diminuição da integralidade do <b>Valor Total da Garantia</b> ou <b>Valor Mínimo da
                   Garantia</b>, conforme o
                 caso, sem substituição ou reforço;
               </p>
               <p>
-                (b) Inadimplemento por parte do <b>CLIENTE</b> das obrigações previstas neste instrumento ou na CCB;
+                <span class="paragraph-item">(b)</span> Inadimplemento por parte do <b>CLIENTE</b> das obrigações previstas neste instrumento ou na CCB;
               </p>
               <p>
-                (c) Se qualquer declaração prestada na presente <b>Garantia</b> for incorreta, falsa ou incompleta, ou
+                <span class="paragraph-item">(c)</span> Se qualquer declaração prestada na presente <b>Garantia</b> for incorreta, falsa ou incompleta, ou
                 tornar-se incorreta, falsa ou incompleta durante a sua vigência;
               </p>
               <p>
-                (d) No caso da prática de qualquer ato que implique em desvio de garantias prestadas em favor do
+                <span class="paragraph-item">(d)</span> No caso da prática de qualquer ato que implique em desvio de garantias prestadas em favor do
                 <b>PAN</b> ou
                 em qualquer impedimento ou dificuldade para o pleno exercício dos direitos e das garantias constituídas
                 em favor do <b>PAN</b>;
               </p>
               <p>
-                (e) Se forem constituídos quaisquer outros ônus ou gravames sobre os <b>Bens</b>;
+                <span class="paragraph-item">(e)</span> Se forem constituídos quaisquer outros ônus ou gravames sobre os <b>Bens</b>;
               </p>
               <p>
-                (f) Se forem identificados, a qualquer tempo, a partir da análise das certidões aplicáveis, quaisquer
+                <span class="paragraph-item">(f)</span> Se forem identificados, a qualquer tempo, a partir da análise das certidões aplicáveis, quaisquer
                 ônus, reais, pessoais, judiciais ou extrajudiciais, gravames, penhora ou qualquer outro ônus, seja de
                 que natureza for, sobre os <b>Bens</b>, ou distribuições, de qualquer ordem ou natureza, impeditivas da
                 constituição da presente garantia ou, ainda, que comprometam a presente garantia ou ponham em risco a
@@ -767,25 +774,15 @@
                 qualquer das declarações prestadas nos termos do presente;
               </p>
               <p>
-                (g) Se não for efetuada a substituição de qualquer <b>Bem</b> na respectiva <b>Data Limite</b> prevista
+                <span class="paragraph-item">(g)</span> Se não for efetuada a substituição de qualquer <b>Bem</b> na respectiva <b>Data Limite</b> prevista
                 no <b>Quadro IV</b>
                 do preâmbulo ;
               </p>
               <p>
-                (h) Verificação da ocorrência de quaisquer das hipóteses de vencimento antecipado da <b>Operação
+                <span class="paragraph-item">(h)</span> Verificação da ocorrência de quaisquer das hipóteses de vencimento antecipado da <b>Operação
                   Garantida</b>.
               </p>
             </section>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="spaces"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="spaces"></div>
           </td>
         </tr>
         <tr>
@@ -795,7 +792,7 @@
                 <span class="paragraph-item">6.1.</span>
                 No caso de vencimento, antecipado ou regular, da <b>Operação Garantida</b> e não pagamento desta, o
                 <b>PAN</b> na
-                qualidade de proprietário fiduciário, exercerá sobre os Bens todos os direitos que a lei lhes confere e
+                qualidade de proprietário fiduciário, exercerá sobre os <b>Bens</b> todos os direitos que a lei lhes confere e
                 promoverá a excussão da presente <b>Garantia</b>.
               </p>
               <p>
@@ -838,7 +835,7 @@
                 <span class="paragraph-item">6.7.</span>
                 O <b>PAN</b> poderá creditar na Conta Vinculada mantida pelo <b>FIDUCIANTE</b> junto ao <b>PAN</b>,
                 conforme o caso, o
-                valor correspondente a eventual importância que sobejar, ou disponibilizar a favor do FIDUCIANTE cheque
+                valor correspondente a eventual importância que sobejar, ou disponibilizar a favor do <b>FIDUCIANTE</b> cheque
                 nominativo não endossável no montante do excedente, caso o <b>FIDUCIANTE</b> não possua conta aberta
                 junto ao
                 <b>PAN</b>, sem curso de juros, salvo se houver saldo devedor decorrente de outras obrigações nos termos
@@ -849,12 +846,9 @@
           </td>
         </tr>
         <tr>
-          <td class="spaces"></td>
-        </tr>
-        <tr>
           <td colspan="2">
             <section class="paragraph">
-              <h2 class="paragraph-title">DISPOSIÇÕES GERAIS</h2>
+              <p class="paragraph-title"><b>DISPOSIÇÕES GERAIS</b></p>
               <p>
                 <span class="paragraph-item">7.</span>
                 O presente instrumento permanecerá em vigor até a efetiva e total liquidação do <b>Limite Liberado</b>
@@ -873,7 +867,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <section class="paragraph">
+            <section class="paragraph  paragraph-negative">
               <p>
                 <span class="paragraph-item">7.2.</span>
                 As Partes autorizam, desde já, a realização de todas as comunicações, registros e notificações
@@ -938,9 +932,6 @@
                 recebidas quando entregues sob protocolo, ou “Aviso de Recebimento” expedido pela Empresa Brasileira de
                 Correios e Telégrafos, ou quando da confirmação do recebimento via fac-símile, via e-mail ou outro meio
                 de transmissão eletrônica:
-                <br>
-                <br>
-                <br>
               </p>
             </section>
             <table class="table-details">
@@ -948,9 +939,13 @@
                 <td>
                   <p class="details-title">PAN:</p>
                   <div class="descriptions">
-                    <p>Endereço: [Conforme Preâmbulo]</p>
-                    <p>Área: [Indicar]</p>
-                    <p>Correio eletrônico: [Indicar]</p>
+                    <p>Endereço: $termo.dadosPan.dadosEndereco.logradouro,
+                    $termo.dadosPan.dadosEndereco.numero -
+                    $termo.dadosPan.dadosEndereco.complemento,
+                    $termo.dadosPan.dadosEndereco.cidade,
+                    $termo.dadosPan.dadosEndereco.uf.</p>
+                    <p>Área: $termo.dadosPan.areaResponsavel</p>
+                    <p>Correio eletrônico: []</p>
                   </div>
                 </td>
               </tr>
@@ -960,9 +955,14 @@
                 <td>
                   <p class="details-title">FIDUCIANTE:</p>
                   <div class="descriptions">
-                    <p>Endereço: [Conforme Preâmbulo]</p>
-                    <p>Área: [Indicar]</p>
-                    <p>Correio eletrônico: [Indicar]</p>
+                    <p>Endereço: $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.logradouro,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.numero,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.bairro,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.cidade,
+                    $termo.dadosLojista.dadosFiduciante.dadosEnderecoLojista.uf.
+                    </p>
+                    <p>Área: $termo.dadosLojista.dadosFiduciante.areaResponsavel</p>
+                    <p>Correio eletrônico: $termo.dadosLojista.dadosFiduciante.correioEletronico</p>
                   </div>
                 </td>
               </tr>
@@ -1014,11 +1014,11 @@
           <td colspan="2" class="footer">
             <!-- <p>
               Esta página é parte integrante e inseparável do Instrumento Particular de Constituição de Alienação
-              Fiduciária em Garantia de Bens Móveis (Floorplan) firmado entre o Banco Pan S.A. e a empresa [nº da CCB]
-              em [Data da CCB]
-            </p> -->
-            <br>
-            <br>
+              Fiduciária em Garantia de Bens Móveis (Floor Plan) firmado entre o Banco Pan S.A. e a empresa $termo.dadosLojista.numeroCCB
+              em $termo.dataEmissaoCCBFormatada
+		    </p> -->
+		    <br>
+			<br>
           </td>
         </tr>
       </tfoot>
@@ -1027,43 +1027,27 @@
   <div>
     <section>
       <table class="footer-table">
-        <thead class="table-header">
         <tr>
           <td>
-            <div class="header-image">
-              <img class="logo" src="C:\Users\re039550\Downloads\arquivosTermo\positivo.png">
-            </div>
+            <p>São Paulo, $termo.diaEmissao de $termo.mesEmissao de $termo.anoEmissao.</p>
           </td>
-          <td>
-            <div class="header-description">
-              <p>Instrumento Particular de Constituição de Alienação Fiduciária
-                em Garantia de Bens Móveis (Floor Plan) nº [nº Instrumento Alienação]</p>
-            </div>
-          </td>
-        </tr>
+		</tr>
         <tr>
-          <td class="spaces"></td>
-        </tr>
-      </thead>
-        <tr>
-          <td>
-            <p>São Paulo, [●] de [●] de [●].</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
+          <td class="sign-page">
             <div class="assignature">
               <div class="line"></div>
               <p><b>BANCO PAN S.A</b></p>
             </div>
           </td>
-          <td>
+          <td class="sign-page">
             <div class="assignature">
               <div class="line"></div>
-              <p><b>[FIDUCIANTE]</b></p>
+              <p><b>$termo.dadosLojista.dadosFiduciante.areaResponsavel</b></p>
             </div>
           </td>
         </tr>
+      </table>
+      <table class="footer-table">
         <tr>
           <td>
             <p class="footer-title">TESTEMUNHAS:</p>
@@ -1073,15 +1057,15 @@
           <td>
             <div class="assignature">
               <div class="line"></div>
-              <p><b>CPF:</b></p>
-              <p><b>NOME:</b></p>
+              <p><b>NOME: $termo.testemunha1.nome</b></p>
+              <p><b>CPF: $termo.testemunha1.cpf</b></p>
             </div>
           </td>
           <td>
             <div class="assignature">
               <div class="line"></div>
-              <p><b>CPF:</b></p>
-              <p><b>NOME:</b></p>
+              <p><b>NOME: $termo.testemunha2.nome</b></p>
+              <p><b>CPF: $termo.testemunha2.cpf</b></p>
             </div>
           </td>
         </tr>
@@ -1092,22 +1076,6 @@
         <p>CENTRAL ATENDIMENTO DEFICIENTES AUDITIVOS/FALA Telefone: 0800 776 2200</p>
         <p>SAC – SERVIÇO DE APOIO AO CONSUMIDOR – Telefone: 0800 776 8000</p>
       </section>
-      <table>
-        <tfoot class="table-footer">
-          <tr>
-            <td class="spaces"></td>
-          </tr>
-          <tr>
-            <td colspan="2" class="footer">
-            <!--  <p>
-                Esta página é parte integrante e inseparável do Instrumento Particular de Constituição de Alienação
-                Fiduciária em Garantia de Bens Móveis (Floorplan) firmado entre o Banco Pan S.A. e a empresa [nº da CCB]
-                em [Data da CCB]
-              </p> -->
-            </td>
-          </tr>
-        </tfoot>
-      </table>
     </section>
   </div>
 </body>
